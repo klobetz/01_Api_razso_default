@@ -1,0 +1,14 @@
+@API_Default_HostAddress = https://localhost:7186
+
+GET {{API_Default_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{API_Default_HostAddress}}/weatherforecast
+
+###
+
+GET {{API_Default_HostAddress}}/weatherforecast
+
+###
