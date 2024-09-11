@@ -25,11 +25,34 @@
     </tbody>
 </table>
 
+<h3>Users List</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Teljes név: |</th>
+            <th>E-mail |</th>
+            <th>Jelszó |</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in usersList)
+        {
+            <tr>
+                <th>@user.FullName</th>
+                <th>@user.Email</th>
+                <th>@user.Password</th>
+            </tr>
+        }
+    </tbody>
+</table>
+
 @code{
     List<WeatherForecastVM> weatherList = new();
+    List<UserVM> usersList = new();
 
     protected override async Task OnInitializedAsync()
     {
         weatherList = await HttpCliant.GetFromJsonAsync<List<WeatherForecastVM>>("WeatherForecast");
+        usersList = await HttpCliant.GetFromJsonAsync<List<UserVM>>("api/teszt/user");
     }
 }

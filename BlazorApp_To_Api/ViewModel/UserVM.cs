@@ -1,0 +1,27 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BlazorApp_To_Api.ViewModel
+{
+    public class UserVM
+    {
+        [Required]
+        [MaxLength(100)]
+        public string FName { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        public string LName { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(100)]
+        [RegularExpression(@"^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W]{1,})$")]
+        public string Email { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(50)]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$")]
+        public string Password { get; set; } = string.Empty;
+
+        public string FullName => $"{FName} {LName}";
+    }
+}
