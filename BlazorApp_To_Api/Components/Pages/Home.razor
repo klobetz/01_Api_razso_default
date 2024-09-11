@@ -1,0 +1,35 @@
+﻿@page "/"
+
+@using BlazorApp_To_Api.ViewModel
+@inject HttpClient HttpCliant
+
+<PageTitle>Home</PageTitle>
+<h3>WeatherForscast</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Dátum |</th>
+            <th>Hőmérséklet |</th>
+            <th>Leírás |</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var weather in weatherList)
+        {
+            <tr>
+                <th>@weather.Date</th>
+                <th>@weather.TemperatureC</th>
+                <th>@weather.Summary</th>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code{
+    List<WeatherForecastVM> weatherList = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        weatherList = await HttpCliant.GetFromJsonAsync<List<WeatherForecastVM>>("WeatherForecast");
+    }
+}
